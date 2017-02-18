@@ -6,6 +6,10 @@ var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
 //app.set('view engine', 'hbs');
+ 
+//Array for to show random employee on about page 
+
+let employee = ["santosh","ganesh","kiran","sachin","Amol","deepak","akash"];
 
 
 app.set('port', process.env.PORT || 3000);
@@ -14,7 +18,8 @@ app.get('/',function(req,res){
 	res.render('home');
 })
 app.get('/about',function(req,res){
-	res.render('about');
+	var random_emp = employee[Math.floor(Math.random() * employee.length)]
+  res.render('about',{emp : random_emp});
 })
 
 app.use(function(req,res){
