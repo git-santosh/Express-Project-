@@ -1,4 +1,5 @@
 var express = require('express');
+var random_emp = require('./lib/random_emp.js');
 var app=express();
 
 // set up handlebars view engine
@@ -9,7 +10,7 @@ app.set('view engine','handlebars');
  
 //Array for to show random employee on about page 
 
-let employee = ["santosh","ganesh","kiran","sachin","Amol","deepak","akash"];
+
 
 
 app.set('port', process.env.PORT || 3000);
@@ -18,8 +19,8 @@ app.get('/',function(req,res){
 	res.render('home');
 });
 app.get('/random-movie',function(req,res){
-  	var random_emp = employee[Math.floor(Math.random() * employee.length)]
-    res.render('random-movie',{emp : random_emp});
+
+    res.render('random-movie',{emp : random_emp.getRandomEmp()});
 });
 app.get('/about',function(req,res){
     res.render('about');
