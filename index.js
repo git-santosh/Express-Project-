@@ -16,11 +16,14 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname+'/public'));
 app.get('/',function(req,res){
 	res.render('home');
-})
+});
+app.get('/random-movie',function(req,res){
+  	var random_emp = employee[Math.floor(Math.random() * employee.length)]
+    res.render('random-movie',{emp : random_emp});
+});
 app.get('/about',function(req,res){
-	var random_emp = employee[Math.floor(Math.random() * employee.length)]
-  res.render('about',{emp : random_emp});
-})
+    res.render('about');
+});
 
 app.use(function(req,res){
 	res.type('text/plain');
