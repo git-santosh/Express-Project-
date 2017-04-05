@@ -45,9 +45,22 @@ app.get('/about',function(req,res){
 app.get('/contact-me',function(req,res){
     res.render('contact-me');
 });
-app.use(function(req,res){
+app.get('/user',function(req,res){
+  console.log('user route called');
+  res.send('Page is under construction');
+});
+app.get('/movie',function(req,res){
+  res.send('movie page called');
+});
+app.get('/movie/:name?',function(req,res){
+  var mov = req.params.name;
+  console.log('mov'+mov);
+  res.send('This is the page for movie '+mov);
+});
+app.use('*',function(req,res){
 	res.type('text/plain');
 	res.status(400);
+  console.log('page not found');
 	//res.send('404 - Not found');
 	res.render('404');
 });
@@ -82,7 +95,9 @@ app.use(function(err,req,res,next){
 	//res.send('500 - Server Error');
 	res.render('500');
 });
-
+// app.get('*',function(req,res){
+//   res.send('This is not the page that you are looking for');
+// });
 app.listen(app.get('port'),function(){
 	console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });	
