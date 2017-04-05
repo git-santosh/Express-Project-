@@ -9,6 +9,7 @@
   "author": "santosh Suryawanshi",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.6",
     "express": "^4.14.0",
     "express3-handlebars": "^0.5.2"
   },
